@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
 {
     float x = 0f, y = 0f;
     int i = 0,j=0,buttonspressed=0,yellow=0,red=0,blue=0,green=0;
-    bool yellowpressed = false, redpressed = false, greenpressed = false, bluepressed = false;
+    bool yellowpressed = false, redpressed = false, greenpressed = false, bluepressed = false,puzzlecomplete=false;
     Vector2 [] posicaobotoes;
     [SerializeField] Transform[] paredes;
     [SerializeField] Vector2[] posicaoparedes;
     [SerializeField] Transform[] pedras;
     [SerializeField] Vector2[] posicaopedras;
-    [SerializeField] Transform Minotauro;
+    [SerializeField] Transform  Minotauro;
     [SerializeField] Vector2 PosicaoMinotauro;
     [SerializeField] Transform[] botoes;
     [SerializeField] Transform[] coloredbotoes;
@@ -92,6 +92,11 @@ for(i=0; i<paredes.Length;i++)
         }
         Vector2 destino = new Vector2(x, y);
         bool andar = true;
+            if (x == win.transform.position.x && y == win.transform.position.y && puzzlecomplete==false)
+            {
+                andar = false;
+            }
+
         for (i = 0; i <paredes.Length; i++)
         {
             if (destino == posicaoparedes[i])
@@ -102,7 +107,7 @@ for(i=0; i<paredes.Length;i++)
         }
             if (andar == false)
             {
-                Debug.Log("no way fag");
+                
             }
             else
             {
@@ -116,7 +121,7 @@ for(i=0; i<paredes.Length;i++)
                 }                
                 if (andar == false)
                 {
-                    Debug.Log("no way fag");
+                   
                 }
                 else
                 {
@@ -175,21 +180,17 @@ for(i=0; i<paredes.Length;i++)
                         bluepressed = true;
                     }
                 }
-                if (buttonspressed==botoes.Length && buttonspressed>0 && x==win.transform.position.x && y==win.transform.position.y)
+                if (buttonspressed==botoes.Length && buttonspressed>0 )
                 {
-                    GetComponent<Player>().enabled = false;
-                    Debug.Log("you have completed the labyrint,very cool");
+                    puzzlecomplete = true;                  
                 }
                 
-                    if(redpressed == true && greenpressed == true && yellowpressed == true && bluepressed==true && x == win.transform.position.x && y == win.transform.position.y)
+                    if(redpressed == true && greenpressed == true && yellowpressed == true && bluepressed==true && Input.GetKeyDown(KeyCode.E ))
                     {
-                    Debug.Log("no fucking way");
                     if ( blue==1 && red==1 && yellow==1 && green==1)
                         {
-                       
-                         GetComponent<Player>().enabled = false;
-                         
-                            Debug.Log("you have completed the labyrint,very cool");
+                        Debug.Log("are You Jimmy Neutron my guy?");
+                        puzzlecomplete = true;
                             
                         }
                         else
@@ -201,7 +202,13 @@ for(i=0; i<paredes.Length;i++)
                                 bluepressed = false;
                         }
                     }
-                
+                if (x == win.transform.position.x && y == win.transform.position.y && puzzlecomplete == true)
+                {
+                    GetComponent<Player>().enabled = false;
+                    Debug.Log("you have completed the labyrint,very cool");
+                }
+
+
             }
               
         }

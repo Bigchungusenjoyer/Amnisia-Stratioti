@@ -7,7 +7,7 @@ public class Rock : MonoBehaviour
     float x = 0f, y = 0f;
     int i = 0,right=0,left=0,up=0,down=0;
   [SerializeField]  Transform  Jogador;
-    [SerializeField] Transform Minotauro;
+    [SerializeField] Transform [] Minotauro;
     [SerializeField] Transform[] paredes;
     [SerializeField] Vector2[] posicaoparedes;
     // Start is called before the first frame update
@@ -98,13 +98,13 @@ public class Rock : MonoBehaviour
 
 
 
-        if (x + 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
+        if (x + 1f == Minotauro[0].transform.position.x && y == Minotauro[0].transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
         {
             left++;
             right = 0;
             up = 0;
             down = 0;
-            if (left == 2 && x + 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
+            if (left == 2 && x + 1f == Minotauro[0].transform.position.x && y == Minotauro[0].transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
             {
                 x--;
                 left = 0;
@@ -113,13 +113,13 @@ public class Rock : MonoBehaviour
         }
 
 
-        if (y + 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
+        if (y + 1f == Minotauro[0].transform.position.y && x == Minotauro[0].transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
         {
             left = 0;
             right = 0;
             up = 0;
             down++;
-            if (down == 2 && y + 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
+            if (down == 2 && y + 1f == Minotauro[0].transform.position.y && x == Minotauro[0].transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
 
             {
                 y--;
@@ -127,13 +127,13 @@ public class Rock : MonoBehaviour
             }
         }
 
-        if (x - 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
+        if (x - 1f == Minotauro[0].transform.position.x && y == Minotauro[0].transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
         {
             left = 0;
             right++;
             up = 0;
             down = 0;
-            if (right == 2 && x - 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
+            if (right == 2 && x - 1f == Minotauro[0].transform.position.x && y == Minotauro[0].transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
 
             {
                 x++;
@@ -143,19 +143,19 @@ public class Rock : MonoBehaviour
         }
 
 
-        if (y - 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
+        if (y - 1f == Minotauro[0].transform.position.y && x == Minotauro[0].transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
         {
             left = 0;
             right = 0;
             up++;
             down = 0;
-            if (up == 2 && y - 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
+            if (up == 2 && y - 1f == Minotauro[0].transform.position.y && x == Minotauro[0].transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
             {
                 y++;
                 up = 0;
             }
         }
-        if (x != Jogador.transform.position.x && y != Jogador.transform.position.y && x != Minotauro.transform.position.x && y != Minotauro.transform.position.y)
+        if (x != Jogador.transform.position.x && y != Jogador.transform.position.y && x != Minotauro[0].transform.position.x && y != Minotauro[0].transform.position.y)
         {
             left = 0;
             right = 0;

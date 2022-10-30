@@ -10,6 +10,8 @@ public class Minotauro : MonoBehaviour
     [SerializeField] Vector2[] posicaoparedes;
     [SerializeField] Transform[] pedras;
     [SerializeField] Vector2[] posicaopedras;
+    [SerializeField] Transform Player;
+    [SerializeField] Transform Win;
     // Start is called before the first frame update
     void Start()
     {
@@ -91,6 +93,10 @@ public class Minotauro : MonoBehaviour
                 {
                     transform.position = new Vector2(x, y);
                 }
+            }
+            if(Player.transform.position.x==Win.transform.position.x && Player.transform.position.y == Win.transform.position.y)
+            {
+                GetComponent<Minotauro>().enabled = false;
             }
         }
     }
