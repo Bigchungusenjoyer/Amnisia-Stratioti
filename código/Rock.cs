@@ -7,7 +7,7 @@ public class Rock : MonoBehaviour
     float x = 0f, y = 0f;
     int i = 0,right=0,left=0,up=0,down=0;
   [SerializeField]  Transform  Jogador;
-   [SerializeField] Vector2 Jogadorposicao;
+    [SerializeField] Transform Minotauro;
     [SerializeField] Transform[] paredes;
     [SerializeField] Vector2[] posicaoparedes;
     // Start is called before the first frame update
@@ -25,9 +25,8 @@ public class Rock : MonoBehaviour
     {
         x = transform.position.x;
         y = transform.position.y;
-        Jogadorposicao = new Vector2(Jogador.transform.position.x, Jogador.transform.position.y);
         
-      
+
         bool andar = true;
       
         
@@ -93,20 +92,83 @@ public class Rock : MonoBehaviour
                 up = 0;
             }
                         }
-                        if(x!=Jogador.transform.position.x && y!=Jogador.transform.position.y)
+     
+
+
+
+
+
+        if (x + 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            left++;
+            right = 0;
+            up = 0;
+            down = 0;
+            if (left == 2 && x + 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                x--;
+                left = 0;
+                Debug.Log("why isn't this working?,is there something missing,must more blood be shed?");
+            }
+        }
+
+
+        if (y + 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
         {
             left = 0;
-                right = 0;
-                up = 0;
+            right = 0;
+            up = 0;
+            down++;
+            if (down == 2 && y + 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.UpArrow))
+
+            {
+                y--;
                 down = 0;
+            }
+        }
+
+        if (x - 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            left = 0;
+            right++;
+            up = 0;
+            down = 0;
+            if (right == 2 && x - 1f == Minotauro.transform.position.x && y == Minotauro.transform.position.y && Input.GetKeyDown(KeyCode.LeftArrow))
+
+            {
+                x++;
+                right = 0;
+            }
 
         }
 
-                    
-                
-            
-        
-        
+
+        if (y - 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            left = 0;
+            right = 0;
+            up++;
+            down = 0;
+            if (up == 2 && y - 1f == Minotauro.transform.position.y && x == Minotauro.transform.position.x && Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                y++;
+                up = 0;
+            }
+        }
+        if (x != Jogador.transform.position.x && y != Jogador.transform.position.y && x != Minotauro.transform.position.x && y != Minotauro.transform.position.y)
+        {
+            left = 0;
+            right = 0;
+            up = 0;
+            down = 0;
+
+        }
+
+
+
+
+
+
         Vector2 posicao = new Vector2(x, y);
         for (i = 0; i < paredes.Length; i++)
         {
